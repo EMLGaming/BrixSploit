@@ -1,5 +1,5 @@
-# Brixsploit
-by EMLGaming and M00SE
+# **BrixSploit**
+By EMLGaming and M00SE
 
 **DESCRIPTION**
 ===
@@ -29,15 +29,6 @@ Run BrixSploit.sh
 ./BrixSploit.sh
 ```
 
-**ARGUMENTS:**
-===
-```
--h for help
--o for output to file (example: ./BrixSploit.sh -o test.txt)
--r for read ip adresses from list (example: ./BrixSploit.sh -r iplist.txt -o output.txt)
-```
-
-
 If you want to harvest a file with ip cameras from shodan we added a script for that aswell.
 All you need to do is install the Shodan commandline tool. Then run BrickscamHarvester.sh.
 
@@ -59,6 +50,15 @@ Run BrickscamHarvester.sh:
 ```
 
 Have fun!
+
+**ARGUMENTS:**
+===
+```
+-h for help
+-o for output to file (example: ./BrixSploit.sh -o test.txt)
+-r for read ip adresses from list (example: ./BrixSploit.sh -r iplist.txt -o output.txt)
+```
+In some cases the username and password are blank that means that the camera is not able to connect to your computer or not vulnerable.
 
 **FIX**
 ===
