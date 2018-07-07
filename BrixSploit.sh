@@ -15,11 +15,11 @@ echo "Made by EMLGaming & M00SE"
 
 function check-ip {
     if [ -z ${OUTPUT+x} ]; then
-        echo "$1:"
+        echo "$1"
         try-exploit $1
         echo ""
     else
-        echo "$1:" >> "$OUTPUT" 2>&1
+        echo "$1" >> "$OUTPUT" 2>&1
         try-exploit $1 >> "$OUTPUT" 2>&1
         echo "" >> "$OUTPUT" 2>&1
     fi
