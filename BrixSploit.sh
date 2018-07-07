@@ -10,7 +10,7 @@ echo "\____/|_|  |_/_/\_\___/ .__/|_|\___/|_|\__|"
 echo "                      | |                  "
 echo "                      |_|                  "
 echo ""
-echo "Made by EMLGaming & M00SE"
+echo "Made by EMLGaming, M00SE & Scrumplex"
 
 function print-help {
     echo "Usage: $0 [Options]"

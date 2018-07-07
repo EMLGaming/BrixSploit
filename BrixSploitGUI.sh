@@ -1,5 +1,5 @@
 #! /bin/bash
-text="BrixSploit by EMLGaming &amp; M00SE"
+text="BrixSploit by EMLGaming, M00SE &amp; Scrumplex"
 eval $(yad --name=BrixSploit --window-icon="logo.png" --title=BrixSploit --text="$text" \
 --width=400 --form --field=Inputfile:SFL --field=Outputfile:SFL \
 "" "" | awk -F'|' '{printf "INPUT=\"%s\"\nOUTPUT=\"%s\"\n", $1, $2}')
