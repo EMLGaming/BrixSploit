@@ -19,14 +19,9 @@ Change directory into Brixsploit:
 cd Brixsploit
 ```
 
-Give permissions to execute the bash files:
+Run installscript.sh
 ```
-sudo chmod +x *.sh
-```
-
-Run BrixSploit.sh
-```
-./BrixSploit.sh
+sudo chmod +x installscript.sh & ./installscript.sh
 ```
 
 If you want to harvest a file with ip cameras from shodan we added a script for that aswell.
@@ -69,4 +64,4 @@ The easiest way to get around this particular exploit is to change **ALL** the d
 
 Thanks to [Emiliano Ipar](https://twitter.com/maninoipar) for finding and exposing this vulnerability! https://www.exploit-db.com/exploits/42588/
 
-***WE DO NOT TAKE RESPONSIBILITY FOR WHAT TO DO WITH THE SCRIPT AND DO NOT CONDONE ANY ILLEGAL PRACTISES WITH IT. ONLY USE ON CAMERAS THAT YOU OWN OR HAVE PERMISSION TO TEST IT ON. FOR EDUCATIONAL PURPOSES ONLY.***
+**WE DO NOT TAKE RESPONSIBILITY FOR WHAT TO DO WITH THE SCRIPT AND DO NOT CONDONE ANY ILLEGAL PRACTISES WITH IT. ONLY USE ON CAMERAS THAT YOU OWN OR HAVE PERMISSION TO TEST IT ON. FOR EDUCATIONAL PURPOSES ONLY.**
