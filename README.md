@@ -44,9 +44,16 @@ Have fun!
 ===
 For the commandline tools:
 ```
--h for help
--o for output to file (example: ./BrixSploit.sh -o test.txt)
--r for read ip adresses from list (example: ./BrixSploit.sh -r iplist.txt -o output.txt)
+Usage: BrixSploit.sh [Options]
+
+Options:
+  -h, --help                   Prints this help page.
+
+  -o=<file>, --output=<file>   Saves results in a file. Disables interactive mode.
+  -r=<file>, --read=<file>     Reads ip addresses from a file.
+
+Examples:
+BrixSploit2.sh -r=iplist.txt -o=results.txt
 ```
 In some cases the username and password are blank that means that the camera is not able to connect to your computer or not vulnerable.
 
