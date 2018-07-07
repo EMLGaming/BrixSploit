@@ -7,6 +7,9 @@ By EMLGaming and M00SE
 This is a script that utilizes an exploit in the Brickcom cameras that reveal the admin username and password.
 We automated it to harvest IPs from shodan and get all the usernames and passwords automaticly. We have a GUI for the skids and a commandline tool for linux lovers.
 
+![gui](https://raw.githubusercontent.com/EMLGaming/BrixSploit/master/gui.png)
+
+
 **INSTALLATION**
 ===
 Clone the source code:
