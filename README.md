@@ -61,9 +61,8 @@ in the NVRAM, including credentials in clear text, remotely by making a
 simple requests. This vulnerability, coupled with the fact that there are
 two default users with known passwords which are rarely modified, allows an
 attacker to disclose the admin password and latter every config.
+Thanks to [Emiliano Ipar](https://twitter.com/maninoipar) for finding and exposing this vulnerability! https://www.exploit-db.com/exploits/42588/
 
 **DISCLAIMER**
 ===
-Thanks to [Emiliano Ipar](https://twitter.com/maninoipar) for finding and exposing this vulnerability! https://www.exploit-db.com/exploits/42588/
-
 **WE DO NOT TAKE RESPONSIBILITY FOR WHAT TO DO WITH THE SCRIPT AND DO NOT CONDONE ANY ILLEGAL PRACTISES WITH IT. ONLY USE ON CAMERAS THAT YOU OWN OR HAVE PERMISSION TO TEST IT ON. FOR EDUCATIONAL PURPOSES ONLY.**
