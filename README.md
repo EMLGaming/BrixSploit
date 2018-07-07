@@ -24,7 +24,7 @@ cd Brixsploit
 
 Run installscript.sh
 ```
-sudo chmod +x installscript.sh & ./installscript.sh
+sudo chmod +x installscript.sh && ./installscript.sh
 ```
 
 Run the tools (GUI)
