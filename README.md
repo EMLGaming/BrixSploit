@@ -50,7 +50,7 @@ Have fun!
 
 ## Example
 ```
-./BrixSploit2.sh -r iplist.txt -o results.txt
+./BrixSploit.sh -r iplist.txt -o results.txt
 ```
 
 In some cases the username and password are blank that means that the camera is not able to connect to your computer or not vulnerable.
@@ -68,3 +68,6 @@ Thanks to [Emiliano Ipar](https://twitter.com/maninoipar) for finding and exposi
 
 # Disclaimer
 **WE DO NOT TAKE RESPONSIBILITY FOR WHAT TO DO WITH THE SCRIPT AND DO NOT CONDONE ANY ILLEGAL PRACTISES WITH IT. ONLY USE ON CAMERAS THAT YOU OWN OR HAVE PERMISSION TO TEST IT ON. FOR EDUCATIONAL PURPOSES ONLY.**
+
+# Contributors
+ - [Scrumplex](https://scrumplex.net)
