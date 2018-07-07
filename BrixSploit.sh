@@ -64,14 +64,21 @@ if [ $INTERACTIVE -eq "1" ]; then
     read ip
     if [ -z ${OUTPUT+x} ]
     then
+        echo "${ip}:"
         check-ip $ip
+        echo ""
     else
+        echo "${ip}:" >> "$OUTPUT" 2>&1
         check-ip $ip >> "$OUTPUT" 2>&1
-        echo "Output saved in ${OUTPUT}."
+        echo "" >> "$OUTPUT" 2>&1
     fi
 else
     # Read mode
+    let x=0 || true # exit script otherwise
+    lines="$(wc -l $READ_FILE | tr -dc '[:alnum:]\n\r' | sed 's/[^0-9]*//g')"
     while read ip; do
+        let x++ || true # exit script otherwise
+        echo "Working on IP $ip ($x/$lines)..."
         if [ -z ${OUTPUT+x} ]
         then
             echo "${ip}:"
@@ -83,5 +90,4 @@ else
             echo "" >> "$OUTPUT" 2>&1
         fi
     done <$READ_FILE
-    echo "Output saved in ${OUTPUT}."
 fi
