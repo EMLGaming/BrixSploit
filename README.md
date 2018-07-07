@@ -5,7 +5,7 @@ By EMLGaming and M00SE
 ===
 
 This is a script that utilizes an exploit in the Brickcom cameras that reveal the admin username and password.
-We automated it to harvest IPs from shodan and get all the usernames and passwords automaticly.
+We automated it to harvest IPs from shodan and get all the usernames and passwords automaticly. We have a GUI for the skids and a commandline tool for linux lovers.
 
 **INSTALLATION**
 ===
@@ -24,30 +24,23 @@ Run installscript.sh
 sudo chmod +x installscript.sh & ./installscript.sh
 ```
 
-If you want to harvest a file with ip cameras from shodan we added a script for that aswell.
-All you need to do is install the Shodan commandline tool. Then run BrickscamHarvester.sh.
-
-Install shodan commandline tool:
-
-Install python-setuptools: (on debain (kali) and ubuntu type this)
+Run the tools (GUI)
 ```
-sudo apt-get install python-setuptools
+./BrickscamHarvesterGUI.sh
+./BrixSploitGUI.sh
 ```
 
-Install shodan:
-```
-sudo easy_install shodan
-```
-
-Run BrickscamHarvester.sh:
+Run the tools (commandline)
 ```
 ./BrickscamHarvester.sh
+./BrixSploit.sh
 ```
 
 Have fun!
 
 **ARGUMENTS:**
 ===
+For the commandline tools:
 ```
 -h for help
 -o for output to file (example: ./BrixSploit.sh -o test.txt)
