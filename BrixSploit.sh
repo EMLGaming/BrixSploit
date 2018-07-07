@@ -45,7 +45,7 @@ while [[ $# -gt 0 ]]; do
             echo "  -r <file>, --read <file>     Reads ip addresses from a file."
             echo ""
             echo "Examples:"
-            echo "$0 -r=iplist.txt -o=results.txt"
+            echo "$0 -r iplist.txt -o results.txt"
             exit
         ;;
         -o|--output)
