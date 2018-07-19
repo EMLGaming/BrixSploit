@@ -81,5 +81,5 @@ else
         echo "Working on IP $ip ($x/$lines)"
         check-ip $ip
     done <$READ_FILE
-    printf "\nDONE! Saved to $OUTPUT!\n"
+    echo "DONE! Saved to $OUTPUT!"
 fi
