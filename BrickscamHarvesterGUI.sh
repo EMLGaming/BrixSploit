@@ -1,6 +1,6 @@
 #! /bin/bash
 text="BrickscamHarvester by EMLGaming &amp; M00SE"
-eval $(yad --name=BrickscamHarvester --window-icon="logo.png" --title=BrickscamHarvester --text="$text" \
+eval $(yad --name=BrickscamHarvester --text-align="CENTER" --window-icon="logo.png" --title=BrickscamHarvester --text="$text" \
 --width=400 --form --field=APIkey --field=Outputfile:SFL \
 "" "" | awk -F'|' '{printf "APIkey=\"%s\"\nOUTPUT=\"%s\"\n", $1, $2}')
 [[ -z $APIkey || -z $OUTPUT ]] && exit 1

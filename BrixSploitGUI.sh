@@ -1,6 +1,6 @@
 #! /bin/bash
 text="BrixSploit by EMLGaming &amp; M00SE"
-eval $(yad --name=BrixSploit --window-icon="logo.png" --title=BrixSploit --text="$text" \
+eval $(yad --name=BrixSploit --text-align="CENTER" --window-icon="logo.png" --title=BrixSploit --text="$text" \
 --width=400 --form --field=Inputfile:SFL --field=Outputfile:SFL \
 "" "" | awk -F'|' '{printf "INPUT=\"%s\"\nOUTPUT=\"%s\"\n", $1, $2}')
 [[ -z $INPUT || -z $OUTPUT ]] && exit 1
